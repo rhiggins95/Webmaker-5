@@ -3,37 +3,38 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const config = require("config");
-const auth = require("../middleware/auth")
+const auth = require("../middleware/auth");
 
 // Login
-router.post("/login", async(req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  let user = await User.findOne({ username: username, password: password}});
-  
-  if(!user){
-    res.json(null)
+  let user = await User.findOne({ username: username, password: password });
+
+  if (!user) {
+    res.json(null);
   } else {
     const payload = {
       user: {
         id: user.id
       }
     };
-    jwt.sign
-    (payload, 
-      config.get("jwtSecret"), 
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
       {
-      expiresIn: "1d"
-    }, 
-    (error, token) => {
-      if(error) {
-        throw error;
+        expiresIn: "1d"
+      },
+      (error, token) => {
+        if (error) {
+          throw error;
+        }
+        res.json({ token, user });
       }
-    res.json({ token, user });
+    );
   }
-  });
-
+});
 // Load user
-router.get("/load", auth, async(req, res) => {});
+router.get("/load", auth, async (req, res) => {});
 
 // // Find user by credentials
 // router.get("/", async (req, res) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function WidgetYouTube(props) {
+export default function WidgetYoutube(props) {
   const params = useParams();
 
   return (

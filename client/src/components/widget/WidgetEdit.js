@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import WidgetHeading from "./WidgetHeading";
 import WidgetImage from "./WidgetImage";
-import WidgetYouTube from "./WidgetYouTube";
+import WidgetYoutube from "./WidgetYoutube";
 import axios from "axios";
 
 export default function WidgetEdit(props) {
@@ -85,7 +85,7 @@ export default function WidgetEdit(props) {
 
   if (widget.widgetType === "YOUTUBE") {
     return (
-      <WidgetYouTube
+      <WidgetYoutube
         widget={widget}
         onChange={onChange}
         remove={remove}
